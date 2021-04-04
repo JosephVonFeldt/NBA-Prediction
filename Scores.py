@@ -5,6 +5,8 @@ Created on Sun Apr  4 04:48:48 2021
 @author: Joseph VonFeldt
 
 This is used to score the accuracy of predictions made by various models.
+It rewards confidently predicting well and punishes confidently predicting
+incorrectly.
 """
 
 
@@ -87,10 +89,14 @@ def score_games_detailed(prediction_list, results_list):
     returns:
         total_score - higher is better; negative indicates worse than random
         score_list - scores for each individual game
+        running_total_list - total of scores_list up to 
+                             and including current index
     """
     assert (len(prediction_list) == len(results_list))
     
     scores_list = []
+    running_total_list = []
+    total_score = 0
     
     num_of_games = len(prediction_list)
     
@@ -100,9 +106,9 @@ def score_games_detailed(prediction_list, results_list):
         pred2 = prediction[1]
         
         game_score = score(pred1, pred2, result)
+        total_score += game_score
+        running_total_list.append(total_score)
         scores_list.append(game_score)
-        
-    total_score = sum(scores_list)   
     
-    return total_score, scores_list
+    return total_score, scores_list, running_total_list
 
