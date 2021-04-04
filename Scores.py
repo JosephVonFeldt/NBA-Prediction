@@ -41,12 +41,14 @@ def score(pred1, pred2, result):
     """
     
     prob1, prob2 = normalize_prediction(pred1, pred2)
-    if result:
+    if result == 1:
         score = prob1 - prob2
     elif result == 2:
         score = prob2 - prob1
     else:
         raise ValueError("result must be either 1 or 2")
+    if score < 0: 
+        score *= 2
     return score
 
 def score_games(prediction_list, results_list):
