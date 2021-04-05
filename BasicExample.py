@@ -9,7 +9,7 @@ Quick early example
 """
 import pandas as pd
 import matplotlib.pyplot as plt
-import SimplyOddsBased as SO
+import SimpleOddsBased as SO
 import Scores as s
 
 df = pd.read_csv("data\\cleannba2016.csv")
@@ -34,6 +34,7 @@ for i in range(3):
     df[funNames[i]] = df.apply(lambda x: row_to_SOpredictions(x,funs[i]), axis=1)
 
 
+
 for name in funNames:
     plt.plot(s.bet_score_games_detailed(df[["ML1", "ML2"]].values, df[name], df["Winner"])[2], label = name)
     
@@ -43,7 +44,7 @@ plt.legend()
 
 
 
-for name in funNames:
-    plt.plot(s.score_games_detailed(df[name], df["Winner"])[2], label = name)
+#for name in funNames:
+    #plt.plot(s.score_games_detailed(df[name], df["Winner"])[2], label = name)
     
-plt.legend()
+#plt.legend()

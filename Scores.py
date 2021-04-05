@@ -9,7 +9,7 @@ It rewards confidently predicting well and punishes confidently predicting
 incorrectly.
 """
 
-from SimplyOddsBased import moneyline_to_prob
+from SimpleOddsBased import moneyline_to_prob
 
 
 
@@ -121,8 +121,10 @@ def moneyline_to_return(moneyline, wager):
     returns:
         roi - return on investment [including initial wager]
     """
-    multiplier  = 1 + moneyline_to_prob(moneyline)
-    return wager * multiplier
+    if moneyline < 0:
+        return -wager  * (100 / moneyline -1)
+    else:
+        return wager * (moneyline / 100 +1)
 
 
 def bet_score(team1_moneyline, team2_moneyline, pred1, pred2, result):
