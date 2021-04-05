@@ -39,8 +39,6 @@ for name in funNames:
     
     
 plt.legend()
-    
-plt.show()
 
 
 
@@ -49,5 +47,3 @@ for name in funNames:
     plt.plot(s.score_games_detailed(df[name], df["Winner"])[2], label = name)
     
 plt.legend()
-    
-plt.show()

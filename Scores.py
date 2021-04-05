@@ -221,7 +221,39 @@ def bet_score_games_detailed(moneyline_list, prediction_list, results_list):
     return total_score, scores_list, running_total_list
 
 
-
+def bet_score_games_ratio(moneyline_list, prediction_list, results_list):
+    """
+    Arguements:
+        moneyline_list - list of tuples of the form (moneyline1, moneyline2)
+        prediction_list - list of tuples of the form (prediction1, prediction2)
+        result_list - list of 1's and 2's indicating the final result
+    returns:
+        ratio_list - ratio of winnings to bets to this game
+    """
+    assert (len(prediction_list) == len(results_list))
+    assert (len(moneyline_list) == len(results_list))
+    
+    total_score = 0
+    total_bet = 0
+    ratio_list = []
+    
+    num_of_games = len(prediction_list)
+    
+    for i in range(num_of_games):
+        moneyline = moneyline_list[i]
+        moneyline1 = moneyline[0]
+        moneyline2 = moneyline[1]
+        prediction = prediction_list[i]
+        pred1 = prediction[0]
+        pred2 = prediction[1]
+        result = results_list[i]
+        total_bet +=abs(pred1-pred2)
+        game_score = bet_score(moneyline1, moneyline2, pred1, pred2, result)
+        total_score+=game_score
+        ratio_list.append(total_score/total_bet if total_bet >0 else 1)
+        
+        
+    return ratio_list
 
 
 
