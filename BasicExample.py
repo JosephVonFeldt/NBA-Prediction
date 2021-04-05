@@ -9,7 +9,7 @@ Quick early example
 """
 import pandas as pd
 import matplotlib.pyplot as plt
-import SimplyOddsBased as SO
+import SimpleOddsBased as SO
 import Scores as s
 
 df = pd.read_csv("data\\cleannba2016.csv")
