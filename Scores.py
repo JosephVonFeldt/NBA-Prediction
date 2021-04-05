@@ -9,7 +9,7 @@ It rewards confidently predicting well and punishes confidently predicting
 incorrectly.
 """
 
-from SimplyOddsBased import moneyline_to_prob
+from SimpleOddsBased import moneyline_to_prob
 
 
 
